@@ -23,17 +23,17 @@ const bodyParser = require('body-parser');
 const validUrl = require('valid-url');
 const shortid = require('shortid');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // Database to store short URLs
 const urlDatabase = {};
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // POST endpoint to create short URL
 app.post('/api/shorturl', (req, res) => {
   const originalUrl = req.body.url;
 
   // Check if the URL is valid
-  if (!validUrl.isUri(originalUrl)) {
+  if (!validUrl.isWebUri(originalUrl)) {
     return res.json({ error: 'invalid url' });
   }
 
