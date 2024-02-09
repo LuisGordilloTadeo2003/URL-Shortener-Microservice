@@ -52,9 +52,9 @@ app.get('/api/shorturl/:shortUrl', (req, res) => {
   const originalUrl = urlDatabase[shortUrl];
 
   if (originalUrl) {
-    res.redirect(originalUrl);
+    return res.redirect(originalUrl);
   } else {
-    res.json({ error: 'invalid short url' });
+    return res.json({ error: 'invalid short url' });
   }
 });
 
